@@ -1,0 +1,98 @@
+{
+    "label": "Sample per user",
+    "name": "sample-user",
+    "apiVersion": "v1",
+    "internal": true,
+    "configurationType": "PER_USER",
+    "deployment": {
+        "profiles":[
+            {
+                "name": "default",
+                "label": "Default",
+                "memory": 256,
+                "description": "Default configuration"
+            }
+        ],
+        "allowMultipleInstances": false
+    },
+    "icon48": "https://storage.googleapis.com/static.slingrs.io/platform/endpoints/sample-user.png",
+    "configurationHelpUrl": "https://slingr-stack.github.io/platform/app_development_model_endpoints.html",
+    "status": "ACTIVE",
+    "stores": [],
+    "events": [
+        {
+            "label": "Global Inbound Event",
+            "name": "globalEvent",
+            "eventType": "GLOBAL",
+            "description": "Test event"
+        },
+        {
+            "label": "User Event",
+            "name": "userEvent",
+            "eventType": "PER_USER",
+            "description": "Test event per user"
+        }
+    ],
+    "functions": [
+        {
+            "label": "Global function",
+            "name": "globalFunction",
+            "functionType": "GLOBAL",
+            "description": "Test global function."
+        },
+        {
+            "label": "User function",
+            "name": "userFunction",
+            "functionType": "PER_USER",
+            "description": "Test per user function."
+        }
+    ],
+    "configuration":[
+        {
+            "name": "token",
+            "label": "Token",
+            "description": "Test token.",
+            "type": "text",
+            "required": true
+        }
+    ],
+    "userConfiguration":[
+        {
+            "name": "staticCode",
+            "label": {
+                "en": "User Code",
+                "es": "Código de usuario"
+            },
+            "description": "Test user code to use on the connection.",
+            "type": "label",
+            "value": "config.code",
+            "visibility" : "config.ENDPOINT_STATUS == 'CONNECTED'"
+        },
+        {
+            "name": "code",
+            "label": {
+                "en": "User Code",
+                "es": "Código de usuario"
+            },
+            "description": "Test user code to use on the connection.",
+            "type": "text",
+            "required": true,
+            "visibility" : "config.ENDPOINT_STATUS == 'DISCONNECTED'"
+        },
+        {
+            "name" : "connectButton",
+            "label" : {
+                "en": "Connect to Service",
+                "es": "Conectar al servicio",
+                "pt": "Conectar-se ao serviço"
+            },
+            "type" : "button",
+            "typeOptions": {
+                "color" : "primary",
+                "icon" : "zmdi-play",
+                "action" : "utils.connectToService();"
+            },
+            "visibility" : "config.ENDPOINT_STATUS == 'DISCONNECTED'"
+        }
+    ]
+}
